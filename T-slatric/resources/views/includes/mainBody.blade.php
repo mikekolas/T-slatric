@@ -1,0 +1,1 @@
+<!-- site's body template -->
