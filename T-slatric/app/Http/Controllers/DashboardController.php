@@ -41,7 +41,7 @@ class DashboardController extends Controller
         $chart = Charts::realtime(route('getjson'),15000, 'line', 'highcharts')
         ->title('Energy Consumption')
         ->colors(['#00ff00'])
-        ->elementLabel("kW")
+        ->elementLabel("W")
         // ->dimensions(1000, 500)
         ->responsive(true)
         ->maxValues(10)
@@ -103,6 +103,6 @@ class DashboardController extends Controller
         $sum = $sum + $quarter;//->power;
         //array_push($q_arr[], $q);
       }
-      return $sum / 240; //240 is database saves per hour
+      return $sum/340;// / 240; //240 is database saves per hour
     }
 }

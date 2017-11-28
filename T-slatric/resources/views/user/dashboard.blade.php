@@ -20,7 +20,7 @@
               <?php
                 $kwh = \App\Http\Controllers\DashboardController::quarterWatts();
                 $kwh = number_format((float)$kwh, 2, '.','');
-                echo '<span style="color:green;font-weight: bold;">'. $kwh . ' kWh</span>';
+                echo '<span style="color:green;font-weight: bold;">'. $kwh . ' Wh</span>';
               ?>
             </p>
           </div> <!-- panel primary end -->

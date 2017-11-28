@@ -17,7 +17,7 @@ class MeasurementsController extends Controller
 
           $receivedData->power = $request->input('power');
           $receivedData->deviceID = $request->input('deviceID');
-          $receivedData->user_id = $request->input('user_id');
+          // $receivedData->user_id = $request->input('user_id');
 
           //$p = $receivedData->power;
           // $this->setPower($receivedData->power);

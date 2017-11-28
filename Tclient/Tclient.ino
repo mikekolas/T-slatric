@@ -1,13 +1,17 @@
+#include <SimpleTimer.h>
+
 #include <Ethernet.h>
 #include "SPI.h"
-// EmonLibrary examples openenergymonitor.org, Licence GNU GPL V3
 
+// EmonLibrary examples openenergymonitor.org, Licence GNU GPL V3
 #include "EmonLib.h"                   // Include Emon Library
 EnergyMonitor energy;                   // Create an instance
 
+SimpleTimer timer;
+
 //server ip and device id
 const char* host = "192.168.1.2"; //Web app server ip
-String deviceID = "";
+String deviceID = ""; 
 const int httpPort = 80;
 
 //======Ethernet parameters=========
@@ -15,9 +19,6 @@ EthernetClient client;
 byte mac[] = {
   0x90, 0xA2, 0xDB, 0x10, 0x8A, 0x52 };
 
-//IPAddress ip(192, 168, 1, 100);
-
-unsigned long timer;
 void setup()
 {  
   Serial.begin(9600);
@@ -33,18 +34,12 @@ void setup()
   delay(1000);
   Serial.println("connecting...");
   delay(1000);
-  sendData(getWatts());
+  timer.setInterval(15000, sendData);
 }
 
 void loop()
 {
-  Serial.println(millis() - timer);
-  if(millis() - timer > 15000)
-  {
-    //client.connect(host, httpPort);
-    sendData(getWatts());
-  }
-  else Serial.println("timer is smaller than 15 seconds");
+    timer.run();
 }
 
 double getWatts()
@@ -53,20 +48,20 @@ double getWatts()
   return (Irms * 230.0);
 }
 
-void sendData(double power)
+void sendData()
 {
   Serial.print("Establishing connection to ");
   Serial.println(host);
-
-  String data ="power=" + String(power) + "&deviceID=" + deviceID + "&user_id=" + 1;
-  Serial.println(data);
+  double power = getWatts();
+  String data ="power=" + String(power) + "&deviceID=" + deviceID;
+  //Serial.println(data);
   
   if (!client.connect(host, httpPort)) {
     Serial.println("Connection failed");
     return;
   }
   else
-  {
+  { // Send Post
     Serial.println("Connected to server");
     client.println("POST /receive HTTP/1.1");
     client.print("Host: ");
@@ -95,8 +90,7 @@ void sendData(double power)
       String line = client.readStringUntil('\r');
       Serial.print(line);
     }
-    timer = millis();
     client.stop();
   }//connection else
-
 }
+
