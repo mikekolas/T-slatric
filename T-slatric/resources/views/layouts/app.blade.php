@@ -18,9 +18,7 @@
     @yield('videobg')
     <div class="container" style="height=100%;">
       <div class="row">
-        
           @yield('content')
-
       </div>
     </div>
 
