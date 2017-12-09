@@ -17,7 +17,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav pull-right navbar-nav">
 
-          <li class="{{Request::is('docs') ? 'active' : ''}}"><a href="docs" style="color:white;">Docs</a></li>
+          <!-- <li class="{{Request::is('docs') ? 'active' : ''}}"><a href="docs" style="color:white;">Docs</a></li> -->
           <li class="{{Request::is('about') ? 'active' : ''}}"><a href="about" style="color:white;">About</a></li>
           <li class="{{Request::is('contact') ? 'active' : ''}}"><a href="contact" style="color:white;">Contact</a></li>
           @if(Auth::user())
@@ -26,6 +26,9 @@
               <ul class="dropdown-menu">
                 <li><a href="account">Account <img class="pull-right" class="img-responsive"  src="entypo/user.svg" style="max-width:15%;"> </a></li>
                 <li><a href="dashboard">Dashboard <img class="pull-right" class="img-responsive" src="entypo/gauge.svg" style="max-width:15%;"> </a></li>
+                @if(Auth::user()->status == 1)
+                  <li><a href="messages">Messages <img class="pull-right" class="img-responsive" src="entypo/message.svg" style="max-width:15%;"> </a></li>
+                @endif
                 <li role="separator" class="divider"></li>
                 <li><a href="logout">Log out <img class="pull-right" class="img-responsive" src="entypo/log-out.svg" style="max-width:15%;"></a></li>
               </ul>

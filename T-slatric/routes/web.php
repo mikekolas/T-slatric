@@ -36,21 +36,23 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/logout','LogoutController@logout'); //user logout
 
 
-Route::get('abo', function() {
-  return view('abo');
-}); //test receive
+Route::group(['middleware' => 'auth'], function () {
+  Route::get('account',function() {
+      return view('user/account');
+  });
 
+  Route::get('dashboard', 'DashboardController@index');
 
-Route::get('account',function() {
+  Route::get('messages', 'MessagesController@getMessages');
+
+  Route::post('upload', function(\Illuminate\Http\Request $request){
+    $filename = Auth::user()->username . ".jpg";
+    Intervention\Image\Facades\Image::make($request->file('image'))->save(public_path('images/' . $filename));
     return view('user/account');
+  });
 });
 
-Route::get('dashboard', 'DashboardController@index');
-Route::get('kWh', 'DashboardController@quarterWatts');
+// Route::get('kWh', 'DashboardController@quarterWatts');
+// Route::get('dkWh', 'DashboardController@dayWatts');
 
 Route::post('/receive', 'MeasurementsController@saveData');
-
-Route::post('upload', function(\Illuminate\Http\Request $request){
-  $filename = Auth::user()->username . ".jpg";
-  Intervention\Image\Facades\Image::make($request->file('image'))->save(public_path('images/' . $filename));
-});

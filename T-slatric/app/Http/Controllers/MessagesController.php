@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Message;
+use Illuminate\Support\Facades\DB;
 
 class MessagesController extends Controller
 {
@@ -26,5 +27,10 @@ class MessagesController extends Controller
       $message->save();
       //Redirect with a success message
       return redirect()->back()->with('success', 'Your message was sent successfully, thanks!');
+    }
+
+    public function getMessages(){
+      $messages = Message::all(); //get all messages in the array
+      return view('admin/messages')->with('messages', $messages);
     }
 }

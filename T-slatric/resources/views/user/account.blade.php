@@ -40,8 +40,15 @@
                       <strong>&nbsp;Dashboard</strong>
                     </span>
                   </a>
-                  <hr style="border-width: 4px;">
-                  <span>Second Item</span>
+                  @if(Auth::user()->status == 1)
+                    <a href="messages">
+                      <hr style="border-width: 4px;">
+                      <span>
+                        <img class="pull-left img-responsive" src="entypo/message.svg" style="max-width:2rem; top:-4px; position:relative;">
+                        <strong>&nbsp;Messages</strong>
+                      </span>
+                    </a>
+                  @endif
                 </div>
               </div> <!-- panel body -->
           </div> <!-- panel primary end -->

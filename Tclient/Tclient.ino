@@ -11,25 +11,26 @@ SimpleTimer timer;
 
 //server ip and device id
 const char* host = "192.168.1.2"; //Web app server ip
-String deviceID = ""; 
+String deviceID = "KRbOARYbVNLRtON"; 
 const int httpPort = 80;
 
 //======Ethernet parameters=========
 EthernetClient client; 
 byte mac[] = {
   0x90, 0xA2, 0xDB, 0x10, 0x8A, 0x52 };
+IPAddress ip(192, 168, 1, 40);
 
 void setup()
 {  
   Serial.begin(9600);
-  Ethernet.begin(mac);
+  Ethernet.begin(mac, ip);
   energy.current(1, 55.5555556);             // Current: input pin, calibration.
-  
+  Serial.println(ip);
   // start the Ethernet connection:
   if (Ethernet.begin(mac) == 0) {
     Serial.println("Failed to configure Ethernet using DHCP");
     // try to congifure using IP address instead of DHCP:
-    //Ethernet.begin(mac, ip);
+    Ethernet.begin(mac, ip);
   }
   delay(1000);
   Serial.println("connecting...");

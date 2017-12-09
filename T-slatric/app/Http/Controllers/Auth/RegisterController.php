@@ -63,6 +63,10 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $userjson = fopen($data['username'] . '.json', "w");
+        fclose($userjson);
+        rename($data['username'] . '.json', './json/' . $data['username'] . '.json');
+
         return User::create([
             'username' => $data['username'],
             'name' => $data['name'],
