@@ -22,7 +22,7 @@
 
     <div class="row">
       <div class="rights">
-        <span class="r">© 2017 - 2018 Michael-Alexandros Savvanis | All rights reserved</span>
+        <span class="r">© 2017-2018 Michael-Alexandros Savvanis | All rights reserved</span>
       </div>
     </div>
   </div> <!-- footer container-->
