@@ -17,4 +17,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/getjson', 'MeasurementsController@getData')->name('getjson');
+Route::get('/getjson', 'MeasurementsController@getData')->name('getjson');//->with('username'. Auth::user()->username);

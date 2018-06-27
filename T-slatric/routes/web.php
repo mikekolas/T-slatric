@@ -37,8 +37,9 @@ Route::get('/logout','LogoutController@logout'); //user logout
 
 
 Route::group(['middleware' => 'auth'], function () {
+
   Route::get('account',function() {
-      return view('user/account');
+    return view('user/account');
   });
 
   Route::get('dashboard', 'DashboardController@index');

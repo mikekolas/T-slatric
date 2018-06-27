@@ -13,7 +13,7 @@
       </div><!-- third footer's column -->
       <!-- <div class="col-xs-3">
           <a href="docs"><span>Docs</span></a>
-      </div>--> <!--fourth footer's column --> 
+      </div>--> <!--fourth footer's column -->
     </div>
 
     <div class="row">
@@ -22,7 +22,7 @@
 
     <div class="row">
       <div class="rights">
-        <span class="r">© 2017 Michael-Alexandros Savvanis | All rights reserved</span>
+        <span class="r">© 2017 - 2018 Michael-Alexandros Savvanis | All rights reserved</span>
       </div>
     </div>
   </div> <!-- footer container-->

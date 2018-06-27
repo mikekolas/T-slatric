@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Measurement;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+
+
 class MeasurementsController extends Controller
 {
     public function __construct()
     {
-//        $this->middleware(['auth']);
+
     }
 
     public function saveData(Request $request)
@@ -33,6 +35,7 @@ class MeasurementsController extends Controller
 
     public function getData()
     {
+      // dd($request->user());
       // $username = Auth::user()->username;
       // $json_read = file_get_contents('json/' . $username . '.json');
       $json_read = file_get_contents('json/power.json');
